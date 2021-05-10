@@ -1,0 +1,145 @@
+logging:
+  config: classpath:logback.xml
+  level:
+    org:
+      springframework:
+        web: INFO
+    root: INFO    
+  path: /home/app/logs
+
+server:
+  id: 70
+  servlet:
+    context-path: /xink-analyze
+  ip: ${HOST_IP}
+  port: 9191
+
+spring:
+  application:
+    name: BS
+  data:
+    mongodb:
+      database: pro2
+      host: ${HOST_IP}
+      port: 27017
+  
+  datasource:
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://${HOST_IP}:3306/bsm2.2?useUnicode=true&characterEncoding=UTF-8
+    username: root
+
+  rabbitmq:
+    host: ${HOST_IP}
+    password: guest
+    port: 5672
+    username: guest
+
+grpc:
+  client:
+    local-grpc-server:
+      ip: ${HOST_IP}
+      server-port: 50055
+      host:
+      - ${LOCAL-GRPC-HOST:${HOST_IP}}
+      port:
+      - 50055
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+
+yscz:
+  mediaServer:
+    ip: ${HOST_IP}
+    rtsp-port: 8554
+    rtmp-port: 8935
+    http-port: 9090
+    flv-port: 7070
+    http-flv-port: 7070
+    videoRecPath: /data/ftpdata/video/
+    alarmImagePath: /data/ftpdata/images/
+
+    bm-switch: true
+    bm-ip: ${HOST_IP}
+    bm-http-port: 8181
+
+    websocket-ip: ${HOST_IP}
+    websocket-port: 9091
+
+    tcp-port: 7171
+    alarm-time: 5000
+    room_num: 20    
+    SS_PLAYRUL: http://${HOST_IP}/live/
+    # SS_URL: rtsp://${HOST_IP}:8554/live/
+
+    SS_FLV: false
+    LIVE_URL: http://${HOST_IP}:7070/live/
+    salt: salt-salt
+    appkeySwitch: false   
+    streamSwitch: true 
+    tokenSwitch: false 
+  upload:
+    path: /uploadFile/
+  video:
+    path: /video/
+  images:
+    path: /images/
+  bodyType: ga
+  
+  videoRecServer:
+    ip: ${HOST_IP}
+    port: 8880 
+  
+  EDA_clientId:
+    edaClientId: client11
+
+  alg:
+    frameRate: 15 
+    period: 500
+    maxTime: 2
+    au_threshold: 2.5
+
+  alarm:
+    period: 500
+    maximum: 50
+    frameNum: 3  #连续XX帧的压力值小于阈值，不结束告警
+    kongHuang: 60-100
+    diChu: 60-100
+    jiaoXing: 60-100
+    heartAttackRiskNbr: 0
+    threshold: 60
+    negative_Emotion_Alarm_Value: 90
+  diskserver:
+    obtain: false   #是否获取存储服务器磁盘空间大小
+    server-ip: 192.168.16.73
+    server-port: 7171
+  disk-address: /data/ftpdata/video #磁盘地址
+
+  heart:
+    range: 5
+    rangeLow: 55-60
+    rangeHigh: 80-85
+
+  nginx:
+    ip: ${HOST_IP}
+    port: 8880
+    docker-video-path: /video
+    playUrl: /video/
+    imageUrl: /images/
+    alarmPlayUrl: /alarmVideo/
+
+superDog:
+  featureID: 1   #超级狗特征Id
+
+
+#grpc:
+#  server:
+#    port: 9898
+#  client:
+#    local-grpc-server:
+#      host:
+#      - ${LOCAL-GRPC-HOST:127.0.0.1}
+#      port:
+#      - 9898
+#      enableKeepAlive: true
+#      keepAliveWithoutCalls: true
+
